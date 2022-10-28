@@ -27,6 +27,7 @@ echo -n "" > $INIT_CFG_FILE
 echo "androidName:$ANDROID_NAME" >> $INIT_CFG_FILE
 echo "androidIdx:$ANDROID_IDX" >> $INIT_CFG_FILE
 echo "vncPort:$ANDROID_VNC_PORT" >> $INIT_CFG_FILE
+echo "vncPwd:$ANDROID_VNC_PWD" >> $INIT_CFG_FILE
 echo "adbPort:$ANDROID_ADB_PORT" >> $INIT_CFG_FILE
 echo "binderIdx:$ANDROID_BINDER_IDX" >> $INIT_CFG_FILE
 echo "screenWidth:$ANDROID_SCREEN_WIDTH" >> $INIT_CFG_FILE
