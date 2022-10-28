@@ -32,6 +32,7 @@ ANDROID_END_IDX=
 ANDROID_NAME=
 ANDROID_IDX=
 ANDROID_VNC_PORT=
+ANDROID_VNC_PWD=
 ANDROID_ADB_PORT=
 
 
@@ -121,6 +122,8 @@ spec:
           value: "$ANDROID_IDX"
         - name: ANDROID_VNC_PORT
           value: "$ANDROID_VNC_PORT"
+        - name: ANDROID_VNC_PWD
+          value: "$ANDROID_VNC_PWD"
         - name: ANDROID_ADB_PORT
           value: "$ANDROID_ADB_PORT"
         - name: ANDROID_SCREEN_WIDTH
@@ -218,6 +221,7 @@ create_android_vm()
 	ANDROID_IDX=$((10#$2))
 	ANDROID_VNC_PORT=$(($ANDROID_VNC_BASE_PORT+$ANDROID_IDX))
 	ANDROID_ADB_PORT=$(($ANDROID_ADB_BASE_PORT+$ANDROID_IDX))
+	ANDROID_VNC_PWD=$RANDOM
 	
 	generate_ss_yaml
 	
