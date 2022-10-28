@@ -193,7 +193,11 @@ function start_vnc_server()
 	rm -rf /tmp/.X11-unix/X$ANDROID_IDX &> /dev/null
 	rm -rf /tmp/.X$ANDROID_IDX-lock &> /dev/null
 
-	cmd="x11vnc -display :$ANDROID_IDX -rfbport $X11VNC_PORT -forever -shared -reopen -desktop $ANDROID_NAME -bg"
+	pwdFile=$OPENVMI_CFG_DIR/$ANDROID_NAME/vnc_passwd
+	cmd="x11vnc -storepasswd $X11VNC_PWD $pwdFile"
+	$cmd > /dev/null &
+
+	cmd="x11vnc -display :$ANDROID_IDX -rfbport $X11VNC_PORT -rfbauth $pwdFile -forever -shared -reopen -desktop $ANDROID_NAME -bg"
 	$cmd -q &> /dev/null
 	if [[ $? -ne 0 ]]; then
 		error "FAILED to start the VNC Server"
