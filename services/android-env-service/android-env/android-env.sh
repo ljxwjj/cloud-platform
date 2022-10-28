@@ -215,7 +215,7 @@ function configure_network()
 			mkdir -p $ipCfgDir 
 		fi
 
-		$OPENVMI_BIN generate-ip-config --ip=$IP_ADDR --gateway="0.0.0.0" --cidr=$CIDR --ipcfg=$ipCfgFile
+		$OPENVMI_BIN generate-ip-config --ip=$IP_ADDR --gateway="10.244.0.1" --cidr=$CIDR --ipcfg=$ipCfgFile
 		if [[ $? -ne 0 ]]; then
 			error "FAILED to configure Networking"
 		fi
