@@ -26,6 +26,7 @@ SCREEN_WIDTH=""
 SCREEN_HEIGHT=""
 IP_ADDR=""
 CIDR=""
+SUBNET_GATEWAY=""
 
 function error()
 {
@@ -86,6 +87,18 @@ function get_android_cfg_data()
 
 	tmp=`cat $cfgFile | grep adbPort`
 	ADB_PORT=${tmp#*:}
+}
+
+function get_subnet_gateway()
+{
+  subnetFile=/run/flannel/subnet.env
+  if [ ! -e $subnetFile ]; then
+          error "$subnetFile isn't exist."
+  fi
+
+  tmp=`cat $subnetFile | grep FLANNEL_SUBNET`
+  tmp=${tmp#*=}
+  SUBNET_GATEWAY=${tmp%%/*}
 }
 
 function start_binder_ashmem()
@@ -215,7 +228,8 @@ function configure_network()
 			mkdir -p $ipCfgDir 
 		fi
 
-		$OPENVMI_BIN generate-ip-config --ip=$IP_ADDR --gateway="10.244.0.1" --cidr=$CIDR --ipcfg=$ipCfgFile
+    get_subnet_gateway
+		$OPENVMI_BIN generate-ip-config --ip=$IP_ADDR --gateway=$SUBNET_GATEWAY --cidr=$CIDR --ipcfg=$ipCfgFile
 		if [[ $? -ne 0 ]]; then
 			error "FAILED to configure Networking"
 		fi
