@@ -1,0 +1,9 @@
+ro.product.brand=Android
+ro.product.manufacturer=android
+ro.product.model=s8
+ro.serialno=021YLJ212C001879
+device.product.imei=868331011992179
+device.product.imsi=5a3b287f2b13bef8
+device.product.phonenum=18181234567
+#运营商46000  46001 46002
+device.product.simoperator=46000

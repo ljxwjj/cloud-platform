@@ -224,7 +224,10 @@ create_android_vm()
 #	ANDROID_VNC_PWD=$RANDOM
   UUID=$(cat /proc/sys/kernel/random/uuid |sed 's/-//g')
   ANDROID_VNC_PWD=$UUID
-	
+
+  mkdir -p /opt/openvmi/android-data/$ANDROID_NAME/data/local/tmp
+  cp build.prop /opt/openvmi/android-data/$ANDROID_NAME/data/local/tmp/
+
 	generate_ss_yaml
 	
 	echo "$ANDROID_TEMPLATE_YAML" | kubectl apply -f - > /dev/null
