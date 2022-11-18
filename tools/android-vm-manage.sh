@@ -221,7 +221,9 @@ create_android_vm()
 	ANDROID_IDX=$((10#$2))
 	ANDROID_VNC_PORT=$(($ANDROID_VNC_BASE_PORT+$ANDROID_IDX))
 	ANDROID_ADB_PORT=$(($ANDROID_ADB_BASE_PORT+$ANDROID_IDX))
-	ANDROID_VNC_PWD=$RANDOM
+#	ANDROID_VNC_PWD=$RANDOM
+  UUID=$(cat /proc/sys/kernel/random/uuid |sed 's/-//g')
+  ANDROID_VNC_PWD=$UUID
 	
 	generate_ss_yaml
 	
