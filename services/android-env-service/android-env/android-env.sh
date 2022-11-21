@@ -208,7 +208,7 @@ function start_vnc_server()
 
 	pwdFile=$OPENVMI_CFG_DIR/$ANDROID_NAME/vnc_passwd
 	cmd="x11vnc -storepasswd $X11VNC_PWD $pwdFile"
-	$cmd -q &> /dev/null
+	$cmd > /dev/null &
 
 	cmd="x11vnc -display :$ANDROID_IDX -rfbport $X11VNC_PORT -rfbauth $pwdFile -forever -shared -reopen -desktop $ANDROID_NAME -bg"
 	$cmd -q &> /dev/null
