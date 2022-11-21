@@ -115,6 +115,8 @@ spec:
         volumeMounts:
         - mountPath: /openvmi
           name: volume-openvmi
+        - mountPath: /data:rw
+          name: volume-data
         env:
         - name: ANDROID_NAME
           value: $ANDROID_NAME
